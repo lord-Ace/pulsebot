@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Pulse BOT</title>
+  </head>
+  <body>
+    <h1>Welcome to Pulse BOT</h1>
+    <p>This is a simple HTML page for the Pulse BOT project.</p>
+    <main id="bot">
+      <section id="conversationarea">
+       <h2 style="text-align: center;">NEW CHAT</h2>
+      </section>
+      <form id="userinput">
+        <textarea class="form" type="text" name="" id="user" placeholder="type your message" required></textarea>
+        <button class="form" id="submit">&#9654;</button>
+      </form>
+    </main>
+    <script>
+       const userinput = document.getElementById('userinput')
+       const user = document.getElementById('user')
+       const conversation = document.getElementById('conversationarea')
+       const date = new Date()
+
+       user.addEventListener('input', ()=>{
+        user.style.height = `${user.scrollHeight}px`
+       })
+
+       user.focus()
+
+       userinput.addEventListener('submit', function(e){
+        e.preventDefault()
+        const chat = document.createElement('div')
+        chat.classList.add('user')
+        chat.textContent = user.value
+        const time = document.createElement('p')
+        time.textContent = `${date.toDateString()} ${date.toLocaleTimeString()}`
+        chat.appendChild(time)
+        conversation.appendChild(chat)
+        this.reset()
+        user.focus()
+        user.style.height = 'auto'
+       })
+    </script>
+  </body>
 </html>
